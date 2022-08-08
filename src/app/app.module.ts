@@ -1,26 +1,21 @@
+import { SessionsModule } from './components/sessions/sessions.module';
+import { EventsModule } from './components/events/events.module';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { EventsComponent } from './components/events/events.component';
-import { EventCardComponent } from './components/event-card/event-card.component';
-import { SessionsComponent } from './components/sessions/sessions.component';
-import { SessionsListComponent } from './components/sessions-list/sessions-list.component';
-import { CartComponent } from './components/cart/cart.component';
 import { HeaderModule } from './components/header/header.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    EventsComponent,
-    EventCardComponent,
-    SessionsComponent,
-    SessionsListComponent,
-    CartComponent
+
   ],
   imports: [
     HeaderModule,
+    EventsModule,
+    SessionsModule,
     BrowserModule,
     AppRoutingModule
   ],
