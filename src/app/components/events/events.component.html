@@ -1,8 +1,9 @@
 <div class="grid grid-cols-1 mx-6 gap-4 my-10 md:grid-cols-2 md:mx-72">
   <ng-container *ngIf="events$ | async as events">
     <app-event-card
-      *ngFor="let event of events"
+      *ngFor="let event of events; trackBy: trackByItems"
       [event]="event"
+      (eventId)="toSession($event)"
     ></app-event-card>
   </ng-container>
 </div>
