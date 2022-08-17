@@ -2,7 +2,7 @@ import { Observable } from 'rxjs';
 import { ApiService } from '../../../shared/services/api.service';
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { EventDetail } from 'src/assets/interfaces';
+import { IEventDetail } from 'src/assets/interfaces';
 
 @Component({
   selector: 'app-events',
@@ -10,8 +10,8 @@ import { EventDetail } from 'src/assets/interfaces';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class EventsListingComponent implements OnInit {
-  constructor(private apiService: ApiService, private router: Router) {}
-  events$: Observable<EventDetail[]>;
+  constructor(private apiService: ApiService, private router: Router) { }
+  events$: Observable<IEventDetail[]>;
   ngOnInit(): void {
     this.events$ = this.apiService.getEvents();
   }

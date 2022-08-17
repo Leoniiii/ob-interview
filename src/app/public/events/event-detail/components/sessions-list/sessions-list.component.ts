@@ -1,5 +1,7 @@
+import { CartService } from './../../../../../shared/services/cart.service';
+import { ActivatedRoute } from '@angular/router';
 import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
-import { EventDates } from 'src/assets/interfaces';
+import { IEventDates } from 'src/assets/interfaces';
 
 @Component({
   selector: 'app-sessions-list',
@@ -7,10 +9,19 @@ import { EventDates } from 'src/assets/interfaces';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SessionsListComponent implements OnInit {
-  @Input() eventDates: EventDates;
-  constructor() {}
+  @Input() eventDates: IEventDates;
+  id: string
+  constructor(public cartService: CartService, private route: ActivatedRoute,) { }
 
   ngOnInit(): void {
-    console.log(this.eventDates)
+    this.route.params.subscribe(({ id }) => this.id = id)
+  }
+  increment(date) {
+    this.cartService.increment(this.id, date)
+  }
+
+  decrement(date) {
+    this.cartService.decrement(this.id, date)
+
   }
 }

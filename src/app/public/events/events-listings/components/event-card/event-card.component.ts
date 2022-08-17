@@ -1,9 +1,6 @@
 import {
   Component,
   Input,
-  OnInit,
-  Output,
-  EventEmitter,
   ChangeDetectionStrategy,
 } from '@angular/core';
 
@@ -12,14 +9,7 @@ import {
   templateUrl: './event-card.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class EventCardComponent implements OnInit {
+export class EventCardComponent {
   @Input() event;
-  @Output() eventId = new EventEmitter();
-  constructor() {}
 
-  ngOnInit(): void {}
-
-  // toSession(event) {
-  //   this.eventId.emit(event);
-  // }
 }

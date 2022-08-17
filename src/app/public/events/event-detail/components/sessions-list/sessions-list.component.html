@@ -5,12 +5,27 @@
       *ngFor="let eventDate of eventDates?.sessions"
     >
       <p class="text-sm md:text-lg">
-        {{ eventDate.date | date:'shortdate' }}, Disponibilidad: {{ eventDate.availability }}
+        {{ eventDate.date | date: "shortDate" }}, Disponibilidad:
+        {{ eventDate.availability }}
       </p>
       <div class="flex items-center gap-2">
-        <p class="text-[#008cba] font-bold text-xl md:text-2xl">-</p>
-        <p class="md:text-xl">0</p>
-        <p class="text-[#008cba] font-bold text-xl md:text-2xl">+</p>
+        <ng-container *ngIf="cartService.cart$ | async as cartEvent">
+          <button
+            class="text-[#008cba] font-bold text-xl md:text-2xl"
+            (click)="this.decrement(eventDate.date)"
+            [disabled]="cartEvent?.[id]?.[eventDate.date] == 0"
+          >
+            -
+          </button>
+          <p class="md:text-xl">{{ cartEvent?.[id]?.[eventDate.date] || 0 }}</p>
+          <button
+            class="text-[#008cba] font-bold text-xl md:text-2xl"
+            (click)="this.increment(eventDate.date)"
+            [disabled]="cartEvent?.[id]?.[eventDate.date] == eventDate.availability"
+          >
+            +
+          </button>
+        </ng-container>
       </div>
     </li>
   </ul>

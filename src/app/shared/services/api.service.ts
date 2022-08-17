@@ -1,19 +1,19 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { catchError, Observable, of } from 'rxjs';
-import { EventDates, EventDetail } from 'src/assets/interfaces';
+import { IEventDates, IEventDetail } from 'src/assets/interfaces';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ApiService {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
-  getEvents(): Observable<EventDetail[]> {
-    return this.http.get<EventDetail[]>('../../assets/data/events.json');
+  getEvents(): Observable<IEventDetail[]> {
+    return this.http.get<IEventDetail[]>('../../assets/data/events.json');
   }
 
-  getSession(id): Observable<EventDates> {
+  getEventInfo(id): Observable<IEventDates> {
     return this.http
       .get(`../../assets/data/event-info-${id}.json`)
       .pipe(catchError((error) => this.handleError(error)));
