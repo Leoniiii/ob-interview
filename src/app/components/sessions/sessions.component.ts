@@ -1,25 +1,40 @@
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ApiService } from './../../services/api.service';
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { Location } from '@angular/common';
+import { EventDates, EventDetail } from 'src/assets/interfaces';
 
 @Component({
   selector: 'app-sessions',
   templateUrl: './sessions.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush
-
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SessionsComponent implements OnInit {
-  selectedEventId
-  constructor(private apiService: ApiService, private router: Router) {
-    this.selectedEventId = this.router.getCurrentNavigation()?.extras?.state
-
+  selectedEvent: EventDates;
+  constructor(
+    private apiService: ApiService,
+    private route: ActivatedRoute,
+    private location: Location
+  ) {
+    // this.selectedEvent = this.router.getCurrentNavigation()?.extras?.state;
+    // console.log('selectedEvent', this.selectedEvent);
   }
 
   ngOnInit(): void {
-    this.apiService.getSession(this.selectedEventId).subscribe(
-      (res) => console.log(res),
-      (err) => console.log(err)
-    )
+    this.getSession();
   }
 
+  getSession() {
+    const id = this.route.snapshot.paramMap.get('id');
+    this.apiService.getSession(id).subscribe({
+      next: (res) => {
+        this.selectedEvent = res;
+        console.log(this.selectedEvent);
+      },
+    });
+  }
+
+  goBack(): void {
+    this.location.back();
+  }
 }

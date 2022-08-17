@@ -1,14 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
+import { EventDates } from 'src/assets/interfaces';
 
 @Component({
   selector: 'app-sessions-list',
   templateUrl: './sessions-list.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SessionsListComponent implements OnInit {
-
-  constructor() { }
+  @Input() eventDates: EventDates;
+  constructor() {}
 
   ngOnInit(): void {
+    console.log(this.eventDates)
   }
-
 }

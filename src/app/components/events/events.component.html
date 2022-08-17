@@ -3,7 +3,7 @@
     <app-event-card
       *ngFor="let event of events; trackBy: trackByItems"
       [event]="event"
-      (eventId)="toSession($event)"
-    ></app-event-card>
+      ></app-event-card>
+      <!-- (eventId)="toSession($event)" -->
   </ng-container>
 </div>
