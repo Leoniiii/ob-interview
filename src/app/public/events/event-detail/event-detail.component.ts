@@ -1,15 +1,15 @@
 import { ActivatedRoute, Router } from '@angular/router';
-import { ApiService } from './../../services/api.service';
+import { ApiService } from '../../../shared/services/api.service';
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 import { EventDates, EventDetail } from 'src/assets/interfaces';
 
 @Component({
-  selector: 'app-sessions',
-  templateUrl: './sessions.component.html',
+  selector: 'app-event-detail',
+  templateUrl: './event-detail.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SessionsComponent implements OnInit {
+export class EventDetailComponent implements OnInit {
   selectedEvent: EventDates;
   constructor(
     private apiService: ApiService,
