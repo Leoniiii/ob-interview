@@ -1,16 +1,25 @@
-import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
-import { EventDates } from 'src/assets/interfaces';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { IEventDates } from 'src/app/shared/interfaces/events.interface';
+import { CartService } from 'src/app/shared/services/cart.service';
 
 @Component({
   selector: 'app-sessions-list',
   templateUrl: './sessions-list.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class SessionsListComponent implements OnInit {
-  @Input() eventDates: EventDates;
-  constructor() {}
+export class SessionsListComponent {
+  @Input() eventDates: IEventDates;
+  id: string;
+
+  constructor(
+    public cartService: CartService,
+    private route: ActivatedRoute
+  ) {}
 
   ngOnInit(): void {
-    console.log(this.eventDates)
+    this.route.params.subscribe(({ id }) => {
+      this.id = id;
+    });
   }
 }

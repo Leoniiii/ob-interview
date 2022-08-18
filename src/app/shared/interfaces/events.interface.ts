@@ -1,9 +1,9 @@
-export interface EventDates {
-  event: Event;
-  sessions: Session[];
+export interface IEventDates {
+  event: IEvent;
+  sessions: ISession[];
 }
 
-export interface EventDetail {
+export interface IEventDetail {
   id: string;
   title: string;
   subtitle: string;
@@ -14,12 +14,12 @@ export interface EventDetail {
   description: string;
 }
 
-export interface Session {
+export interface ISession {
   date: string;
   availability: string;
 }
 
-export interface Event {
+export interface IEvent {
   id: string;
   title: string;
   subtitle: string;
