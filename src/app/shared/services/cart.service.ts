@@ -11,8 +11,10 @@ export class CartService {
       title,
       dates: {
         ...this.cart[eventId]?.dates,
-        [date]: !this.cart[eventId]?.dates?.[date] ? 1 : ++this.cart[eventId].dates[date],
-      }
+        [date]: !this.cart[eventId]?.dates?.[date]
+          ? 1
+          : ++this.cart[eventId].dates[date],
+      },
     };
 
     // if (!this.cart[eventId]) {
@@ -32,9 +34,18 @@ export class CartService {
       ...this.cart[eventId],
       dates: {
         ...this.cart[eventId]?.dates,
-        [date]: this.cart[eventId]?.dates?.[date] > 0 ? --this.cart[eventId].dates[date] : 0,
-      }
+        [date]:
+          this.cart[eventId]?.dates?.[date] > 0
+            ? --this.cart[eventId].dates[date]
+            : 0,
+      },
     };
+    if (this.cart[eventId]?.dates?.[date] === 0) {
+      delete this.cart[eventId]?.dates?.[date];
+    }
+    if (Object.entries(this.cart[eventId]?.dates).length === 0) {
+      delete this.cart[eventId];
+    }
     // if (!this.cart[eventId]) {
     //   this.cart[eventId] = {};
     // }
